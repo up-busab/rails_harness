@@ -1,0 +1,24 @@
+FROM beevelop/ionic:latest
+
+RUN apt-get update -y && apt-get install -y openjdk-8-jdk 
+
+RUN apt-get -qq update && \
+    apt-get -qq install -y iputils-ping wget curl git maven ant gradle vim
+
+RUN apt-get update -y && apt-get install -y rubygems ruby-dev build-essential
+RUN apt-get update -y && apt-get install -y libpng-dev libpng16-16 libxml2-dev cmake pkg-config ninja-build
+
+#RUN gem install cocoapods
+RUN gem install travis
+
+#RUN mv /usr/local/bin/pod /usr/local/bin/_pod
+#RUN echo "#!/bin/bash" > /usr/local/bin/pod && echo "/usr/local/bin/_pod --allow-root $@" >> /usr/local/bin/pod
+RUN echo "#!/bin/bash" > /usr/local/bin/pod && echo "echo 'passing through fake pod...'" >> /usr/local/bin/pod
+RUN echo "#!/bin/bash" > /usr/local/bin/xcodebuild && echo "echo 'passing through fake xcodebuild...'" >> /usr/local/bin/xcodebuild
+RUN chmod 777 /usr/local/bin/pod
+RUN chmod 777 /usr/local/bin/xcodebuild
+
+#RUN git clone --depth=1 https://github.com/facebook/xcbuild
+#RUN cd xcbuild && git submodule update --init && make && make install
+
+EXPOSE 8100

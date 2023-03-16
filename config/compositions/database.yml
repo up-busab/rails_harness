@@ -1,0 +1,14 @@
+version: '2.3'
+services:
+  
+  db:
+    image: gs/db
+
+    volumes:
+      - ./database_volume:/var/lib/postgresql/data
+      - ./workspace_volume:/usr/local/workspace/
+
+    working_dir: /usr/local/workspace/     
+
+    command: postgres 
+

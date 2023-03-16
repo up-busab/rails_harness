@@ -1,0 +1,14 @@
+version: '2.3'
+services:
+  
+  ionic:
+    image: gs/ionic    
+    volumes:
+      - ./workspace_volume:/usr/local/workspace/
+    working_dir: /usr/local/workspace/ 
+    
+    command: bash entry.sh 
+
+    ports: 
+      - "8100:8100"
+
